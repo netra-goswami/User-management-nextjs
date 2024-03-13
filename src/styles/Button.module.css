@@ -1,0 +1,7 @@
+.primary {
+  @apply text-slate-800 text-lg;
+}
+
+.error {
+  @apply bg-red-800 text-white p-4 rounded-lg;
+}

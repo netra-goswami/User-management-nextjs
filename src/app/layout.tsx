@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { AppContextProvider } from "@/context/Provider";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +18,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const activePath = headersList.get("x-pathname");
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <AppContextProvider>
+          {activePath}
+          <Header />
+          {children}
+          {/* <Footer /> */}
+        </AppContextProvider>
+      </body>
     </html>
   );
 }
